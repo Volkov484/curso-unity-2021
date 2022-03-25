@@ -8,18 +8,19 @@ public class PlayerShooting : MonoBehaviour
 
     public GameObject shootingPoint;
 
+    private Animator _animator;
 
-    
-    // Update is called once per frame
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            GameObject bullet = ObjectPool.SharedInstance.GetFirstPooledObject();
-            bullet.layer = LayerMask.NameToLayer("Player Bullet");
-            bullet.transform.position = shootingPoint.transform.position;
-            bullet.transform.rotation = shootingPoint.transform.rotation;
-            bullet.SetActive(true);
+            _animator.SetTrigger("Shot Bullet");
+            Invoke("Firebullet", 0.4f);
             /*
             GameObject bullet = Instantiate(prefab);
             bullet.transform.position = shootingPoint.transform.position;
@@ -27,5 +28,15 @@ public class PlayerShooting : MonoBehaviour
             Destroy(bullet, 2);
             */
         } 
+    }
+    
+    
+    void Firebullet()
+    {
+        GameObject bullet = ObjectPool.SharedInstance.GetFirstPooledObject();
+        bullet.layer = LayerMask.NameToLayer("Player Bullet");
+        bullet.transform.position = shootingPoint.transform.position;
+        bullet.transform.rotation = shootingPoint.transform.rotation;
+        bullet.SetActive(true);
     }
 }
