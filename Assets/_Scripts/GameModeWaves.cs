@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,20 +7,24 @@ using UnityEngine.SceneManagement;
 public class GameModeWaves : MonoBehaviour
 {
     [SerializeField] private Life playerLife;
-    void Update()
+    [SerializeField] private Life baseLife;
+
+    private void Awake()
     {
-        //GANAR
-        if (EnemyManager.SharedInstance.enemies.Count<=0 &&
-            WaveManager.SharedInstance.waves.Count<=0)
-        {
-            SceneManager.LoadScene("WinScene", LoadSceneMode.Single);
-        }
-        
-        
-        //PERDER
-        if (playerLife.Amount <= 0)
-        {
-            SceneManager.LoadScene("LoseScene", LoadSceneMode.Single);
-        }
+        playerLife.onDeath.AddListener(OnPlayerLose);
+        baseLife.onDeath.AddListener(OnPlayerLose);
+        EnemyManager.SharedInstance.onEnemyChanged.AddListener(OnPlayerWin);
+    }
+
+    void OnPlayerLose()
+    {
+        SceneManager.LoadScene("LoseScene", LoadSceneMode.Single);
+    }
+
+    void OnPlayerWin()
+    {
+        SceneManager.LoadScene("WinScene", LoadSceneMode.Single);
     }
 }
+
+

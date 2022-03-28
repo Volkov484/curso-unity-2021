@@ -11,12 +11,12 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         var life = GetComponent<Life>();
-        life.onDead.AddListener(DestroyEnemy);
+        life.onDeath.AddListener(DestroyEnemy);
     }
 
     private void Start()
     {
-        EnemyManager.SharedInstance.enemies.Add(this);
+        EnemyManager.SharedInstance.AddEnemy(this);
     }
 
     private void DestroyEnemy()
@@ -26,16 +26,14 @@ public class Enemy : MonoBehaviour
         Invoke("PlayDestruction", 1);
         Destroy(gameObject, 2);
         ScoreManager.SharedInstance.Amount += pointsAmount;
-        EnemyManager.SharedInstance.enemies.Remove(this);
-        
+        EnemyManager.SharedInstance.RemoveEnemy(this);
     }
     
     void PlayDestruction()
     {
         var life = GetComponent<Life>();
-        life.onDead.RemoveListener(DestroyEnemy);
+        life.onDeath.RemoveListener(DestroyEnemy);
         ParticleSystem explosion = gameObject.GetComponentInChildren<ParticleSystem>();
         explosion.Play();
     }
-
 }

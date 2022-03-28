@@ -10,7 +10,7 @@ public class Life : MonoBehaviour
     private float amount;
 
 
-    public UnityEvent onDead;
+    public UnityEvent onDeath;
     
     public float Amount
     {
@@ -20,7 +20,7 @@ public class Life : MonoBehaviour
             amount = value;
             if (amount <= 0)
             {
-                onDead.Invoke();
+                onDeath.Invoke();
 
             }
         }
