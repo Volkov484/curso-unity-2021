@@ -11,19 +11,24 @@ public class GameModeWaves : MonoBehaviour
 
     private void Awake()
     {
-        playerLife.onDeath.AddListener(OnPlayerLose);
-        baseLife.onDeath.AddListener(OnPlayerLose);
-        EnemyManager.SharedInstance.onEnemyChanged.AddListener(OnPlayerWin);
+        playerLife.onDeath.AddListener(CheckLoseCondition);
+        baseLife.onDeath.AddListener(CheckLoseCondition);
+        EnemyManager.SharedInstance.onEnemyChanged.AddListener(CheckWinCondition);
+        WaveManager.SharedInstance.onWaveChanged.AddListener(CheckWinCondition);
     }
 
-    void OnPlayerLose()
+    void CheckLoseCondition()
     {
         SceneManager.LoadScene("LoseScene", LoadSceneMode.Single);
     }
 
-    void OnPlayerWin()
+    void CheckWinCondition()
     {
-        SceneManager.LoadScene("WinScene", LoadSceneMode.Single);
+        if (EnemyManager.SharedInstance.EnemyCount<=0 && WaveManager.SharedInstance.WavesCount <=0)
+        {
+            SceneManager.LoadScene("WinScene", LoadSceneMode.Single);
+        }
+        
     }
 }
 
