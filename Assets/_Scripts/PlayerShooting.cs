@@ -9,6 +9,7 @@ public class PlayerShooting : MonoBehaviour
     public GameObject shootingPoint;
 
     private Animator _animator;
+    public int bulletsAmount;
 
     private void Awake()
     {
@@ -17,10 +18,15 @@ public class PlayerShooting : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) && Time.timeScale > 0)
         {
             _animator.SetTrigger("Shot Bullet");
-            Invoke("Firebullet", 0.4f);
+            if (bulletsAmount > 0)
+            {
+                Invoke("Firebullet", 0.4f);
+            }
+            
+            
             /*
             GameObject bullet = Instantiate(prefab);
             bullet.transform.position = shootingPoint.transform.position;
@@ -38,5 +44,6 @@ public class PlayerShooting : MonoBehaviour
         bullet.transform.position = shootingPoint.transform.position;
         bullet.transform.rotation = shootingPoint.transform.rotation;
         bullet.SetActive(true);
+        bulletsAmount--;
     }
 }
