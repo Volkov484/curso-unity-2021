@@ -54,7 +54,9 @@
   <ItemGroup>
      <Compile Include="Assets\_Scripts\Enemy.cs" />
      <Compile Include="Assets\_Scripts\DamageOnContact.cs" />
+     <Compile Include="Assets\_Scripts\EnemyFSM.cs" />
      <Compile Include="Assets\_Scripts\WaveManager.cs" />
+     <Compile Include="Assets\_Scripts\Sight.cs" />
      <Compile Include="Assets\_Scripts\ObjectPool.cs" />
      <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
      <Compile Include="Assets\_Scripts\EnemyManager.cs" />
@@ -68,7 +70,9 @@
      <Compile Include="Assets\_Scripts\WaveSpawner.cs" />
      <Compile Include="Assets\_Scripts\MoveForward.cs" />
      <Compile Include="Assets\_Scripts\LifeBar.cs" />
+     <Compile Include="Assets\_Scripts\Pause.cs" />
      <Compile Include="Assets\_Scripts\AutoDestroy.cs" />
+     <Compile Include="Assets\_Scripts\NavMeshTest.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

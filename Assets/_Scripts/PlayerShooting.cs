@@ -9,7 +9,12 @@ public class PlayerShooting : MonoBehaviour
     public GameObject shootingPoint;
 
     private Animator _animator;
+    
+    public int bulletsAmount;
 
+    public ParticleSystem fireEffect;
+
+    public AudioSource shootSound;
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -17,10 +22,14 @@ public class PlayerShooting : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.timeScale > 0)
         {
             _animator.SetTrigger("Shot Bullet");
-            Invoke("Firebullet", 0.4f);
+            if (bulletsAmount > 0)
+            {
+                Invoke("FireBullet", 0.4f);
+            }
+            
             /*
             GameObject bullet = Instantiate(prefab);
             bullet.transform.position = shootingPoint.transform.position;
@@ -31,12 +40,19 @@ public class PlayerShooting : MonoBehaviour
     }
     
     
-    void Firebullet()
+    void FireBullet()
     {
         GameObject bullet = ObjectPool.SharedInstance.GetFirstPooledObject();
         bullet.layer = LayerMask.NameToLayer("Player Bullet");
         bullet.transform.position = shootingPoint.transform.position;
         bullet.transform.rotation = shootingPoint.transform.rotation;
         bullet.SetActive(true);
+        fireEffect.Play();
+        shootSound.Play();
+        bulletsAmount--;
+        if (bulletsAmount<0)
+        {
+            bulletsAmount = 0;
+        }
     }
 }

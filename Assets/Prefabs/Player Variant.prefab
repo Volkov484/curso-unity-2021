@@ -433,3 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 100
+  maximumLife: 100
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []

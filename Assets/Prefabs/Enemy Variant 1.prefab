@@ -508,7 +508,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9086425172255437036, guid: efcaf519c845ff046914d8b2e5375fed, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: efcaf519c845ff046914d8b2e5375fed, type: 3}
 --- !u!1 &3651600100822037636 stripped
 GameObject:
@@ -531,6 +537,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7141dc62d13ba4da5be71ba5635b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4149796677781062309 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2100446695605333823, guid: efcaf519c845ff046914d8b2e5375fed, type: 3}
+  m_PrefabInstance: {fileID: 2643968345183776154}
+  m_PrefabAsset: {fileID: 0}
 --- !u!54 &4358234144770942895
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -545,7 +556,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!136 &8565160458933502135
 CapsuleCollider:
@@ -557,7 +568,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.8
+  m_Radius: 0.41
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -574,6 +585,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsAmount: 10
+--- !u!195 &2344813588437851402
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3651600100822037636}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0.5
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &3314163477752332668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,16 +624,39 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3706503358657877451
+--- !u!114 &3931691103279796900
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3651600100822037636}
+  m_GameObject: {fileID: 4149796677781062309}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed8d365be331a1947897917cb47570d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 59410a6bf24833f48b3a98568cda8d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  currentState: 0
+  baseAttackDistance: 10
+  playerAttackDistance: 10
+--- !u!114 &6086148002245312677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4149796677781062309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 379fae239554db84292e8e116c56d9d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 10
+  angle: 45
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  detectedTarget: {fileID: 0}
